@@ -17,15 +17,17 @@ export class QuestionsComponent {
 
     recommendations: InputInterface[] = recommendations // list of recommendations
 
+    questionOne: string = 'What kind of pizza are you in the mood for?'
+
     answerOne: InputInterface = {
         name: 'Normal',
         value: 0
-    }
+    } // default answerOne
 
     answerTwo: InputInterface = {
         name: 'Nothing',
         value: 0
-    };
+    }; // default answerTwo
 
     // Get the recommendation based on the user input
     public getRecommendation = (): string => {
