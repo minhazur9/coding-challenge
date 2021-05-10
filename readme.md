@@ -1,24 +1,18 @@
 # juice. Coding Challenge
 
-The goal of this challenge is to test your abilities in a fullstack environment
-This challenge is an iterative project that you can keep building on and can also use as a portfolio piece as a display of your own work.
-
-In this project, you will likely use Node, Mongo and Express and Angular.
+The goal of this challenge is to test your abilities in a fullstack environment. There are no gotchas or tricks, but read the prompt carefully. This challenge is an iterative project that you can keep building on and use as a portfolio piece if you'd like. Feel free to ask Siri any questions along the way.
 
 ## Brief
 
 Create a simple recommendation system of any kind. (We would love to get a pizza recommendation!)
 
-You will start off by creating a function that just gives you the recommendation and eventually build on top of that to create a backend route that a client can call to receive this recommendation. You will then store this in a database, after which you will build a frontend for a user to recieve this recommendation using the backend service.
+You will start by creating a function that gives you the recommendation and eventually create a backend route that a client can call to receive this recommendation. You will then store this in a database after which you will build a frontend for a user to receive this recommendation using the backend service.
 
 ### Details
-Here are the highlights of what we'd like to see built out for this project.
-This is not an exhaustive list but we recommend following these steps in this order and getting to as far as you can within the given time period.
-As always, you can keep iterating on this project as you see necessary.
+Here are the highlights of what we'd like to see built out for this project. This is not an exhaustive list, but we recommend following these steps in this order and getting as far as you can within the given time period. Again, you can keep iterating on this project in the future.
 
 ### Recommendation System
-Your first step in this project will be to build a function that gives you a recommendation.
-You will build a simple recommendation system which will consists of two input params and a recommendation based on those inputs.
+Your first step in this project will be to build a function that gives you a recommendation. You will build a simple recommendation system which will consist of two input params and a recommendation based on those inputs.
 
 ```
 input 1 + input 2 = recommendation
@@ -30,17 +24,13 @@ You will use two different lists to create these inputs, ideally about 5 items p
 Your next step is to create an API route that will take in these inputs from a client and send back a recommendation.
 
 ### Database
-In this step, you will create a database schema for MongoDB to store the inputs and recommendation.
-For future iterations, you can actually integrate it with a local instance of Mongo.
+In this step, you will create a database schema for MongoDB to store the inputs and recommendation. For future iterations, you can integrate it with a local instance of Mongo.
 
 ### Frontend
-Here you can get creative and make a frontend that a user can actually interact with to select inputs and get a recommendation.
-We would love to see this in Angular, but any frontend framework is fine.
-You can either create a separate repository or two different folders for the client and server applications.
+Here, you can get creative and make a frontend that a user can interact with to select inputs and get a recommendation. We would love to see this in Angular, but any frontend framework is fine. You can either create a separate repository or two different folders for the client and server applications.
 
 ### Nice to haves
-We would love to see you work with Typescript and create interfaces/types as and when necessary.
-Use Classes to help you build out each of the modules
+We would love to see you work with Typescript and create interfaces/types as and when necessary. Use Classes to help you build out each of the modules
 
 ### What we're looking for
  - Good, clean code that is readable by any developer.
