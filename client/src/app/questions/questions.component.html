@@ -1,1 +1,22 @@
-<h2 class="question">{{ questionOne }}</h2>
+<!-- Question 1 -->
+<div class="question-container" *ngIf="questionNumber === 1">
+    <h2 class="question">{{ questionOne }}</h2>
+    <div class="inputs-container">
+        <button class="option" *ngFor="let option of inputOne" (click)="setAnswerOne(option.value)">
+            {{option.name}}
+        </button>
+    </div>
+</div>
+
+<!-- Question 2 -->
+<div class="question-container" *ngIf="questionNumber === 2">
+    <h2 class="question">{{ questionTwo }}</h2>
+    <div class="inputs-container" *ngIf="questionNumber === 2">
+        <button class="option" *ngFor="let option of inputTwo" (click)="setAnswerTwo(option.value)">
+            {{option.name}}
+        </button>
+    </div>
+</div>
+
+<!-- Recommendation -->
+<h2 class="recommendation" *ngIf="questionNumber === -1"><span class="first">I recommend </span><span class="second">{{getRecommendation()}}</span></h2>

@@ -1,5 +1,55 @@
 .question {
-    text-align: center;
-    margin-top: 35px;
-    color: #f0cf2b
+  text-align: center;
+  margin-top: 35px;
+  color: #f0cf2b;
+  animation-name: fadeIn;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+.inputs-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px;
+  .option {
+    border: 0;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    width: 150px;
+    margin: 20px;
+    color: white;
+    background-color: #51bbe8;
+    font-size: 20px;
+    font-family: "Fredoka One", cursive;
+    transition: 300ms;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.recommendation {
+  font-size: 40px;
+  .first {
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  .second {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    color: #FB8404;
+  }
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 100;
+  }
 }

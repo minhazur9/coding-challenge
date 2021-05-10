@@ -17,6 +17,10 @@ export const inputOne: InputInterface[] = [
         name: 'Exotic',
         value: 3
     },
+    {
+        name: 'Umami',
+        value: 4
+    },
 
 ]  // first set of options
 
@@ -26,16 +30,21 @@ export const inputTwo: InputInterface[] = [
         value: 0
     },
     {
-        name: 'Pepperoni',
+        name: 'Meat',
         value: 1
     },
     {
-        name: 'Jalepeno',
+        name: 'Peppers',
         value: 2
     },
     {
-        name: 'Chicken',
+        name: 'Fruit',
         value: 3
     },
+    {
+        name: 'Vegetables',
+        value: 4
+    },
+    
 
 ] // second set of options

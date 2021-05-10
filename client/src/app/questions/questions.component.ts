@@ -17,21 +17,31 @@ export class QuestionsComponent {
 
     recommendations: InputInterface[] = recommendations // list of recommendations
 
-    questionOne: string = 'What kind of pizza are you in the mood for?'
+    questionOne: string = 'What kind of pizza are you in the mood for?' // first question
 
-    answerOne: InputInterface = {
-        name: 'Normal',
-        value: 0
-    } // default answerOne
+    questionTwo: string = 'What kind of toppings would you want your pizza to have?' //second question
 
-    answerTwo: InputInterface = {
-        name: 'Nothing',
-        value: 0
-    }; // default answerTwo
+    answerOneValue: number = 0 // value of first input
+
+    answerTwoValue: number = 0 // value of second input
+
+    questionNumber: number = 1 // the question number
+
+    // Set answer one value
+    public setAnswerOne = (value: number): void => {
+        this.answerOneValue = value
+        this.questionNumber = 2
+    }
+
+    // Set answer two value
+    public setAnswerTwo = (value: number):void => {
+        this.answerTwoValue = value
+        this.questionNumber = -1
+    }
 
     // Get the recommendation based on the user input
     public getRecommendation = (): string => {
-        const recommendationValue = this.answerOne.value + this.answerTwo.value
+        const recommendationValue = this.answerOneValue + this.answerTwoValue
         const foundRecommendation = recommendations.find((recommendation) => recommendation.value === recommendationValue)
         if (foundRecommendation) return foundRecommendation.name
         else return 'Plain'
