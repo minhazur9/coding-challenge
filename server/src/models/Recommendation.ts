@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import { UserRecommendation } from '../types/UserRecommendationInterface';
 
-const RecommendationSchema = new mongoose.Schema({
+const RecommendationSchema = new mongoose.Schema<UserRecommendation>({
     inputOne: {
         type: String,
         required: true,
