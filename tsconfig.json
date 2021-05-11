@@ -13,5 +13,5 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["server/src/**/*", "server/models", "server/models", "server/models"]
+  "include": ["server/src/**/*", "server/src/models", "server/src/models", "server/src/models"]
 }
