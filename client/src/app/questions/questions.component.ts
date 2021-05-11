@@ -27,13 +27,13 @@ export class QuestionsComponent {
 
     questionNumber: number = 1 // the question number
 
-    // Set answer one value
+    // Set input one value
     public setInputOne = (value: number): void => {
         this.inputOneValue = value
         this.questionNumber = 2
     }
 
-    // Set answer two value
+    // Set input two value
     public setInputTwo = (value: number): void => {
         this.inputTwoValue= value
         this.questionNumber = -1

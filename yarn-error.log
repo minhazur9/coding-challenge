@@ -1,0 +1,63 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add mongoose
+
+PATH: 
+  /home/min/bin:/home/min/.vscode-server/bin/cfa2e218100323074ac1948c885448fdf4de2a7f/bin:/home/min/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/devkitPro/msys2/usr/bin:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/AOMEI Backupper:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/MATLAB/R2019b/bin:/mnt/c/Program Files (x86)/Brackets/command:/mnt/c/Program Files/Git/cmd:/mnt/c/curl-7.72.0-win64-mingw/bin:/mnt/c/Program Files/nodejs/:/mnt/c/bin/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/Users/16095/AppData/Local/Programs/Python/Python37-32/Scripts/:/mnt/c/Users/16095/AppData/Local/Programs/Python/Python37-32/:/mnt/c/Users/16095/AppData/Local/Microsoft/WindowsApps:/mnt/c/devkitPro/devkitARM/bin:/mnt/c/Users/16095/Desktop/Complete-Fire-Red-Upgrade-master/deps:/mnt/c/Users/16095/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/16095/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/16095/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/16095/AppData/Local/Programs/Microsoft VS Code Insiders/bin:/mnt/c/Users/16095/AppData/Roaming/npm:/snap/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.16.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, unlink '/home/min/juice/coding-challenge/node_modules/@mapbox/node-pre-gyp/node_modules/semver/CHANGELOG.md'
+
+npm manifest: 
+  {
+    "name": "coding-challenge",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "repository": {},
+    "license": "MIT",
+    "devDependencies": {
+      "@types/cors": "^2.8.10",
+      "@types/express": "^4.17.11",
+      "@types/express-session": "^1.17.3",
+      "@types/node": "^14.14.32",
+      "@types/passport": "^1.0.0",
+      "@types/passport-jwt": "^3.0.1",
+      "@types/passport-local": "^1.0.33",
+      "express-session": "^1.17.1",
+      "moment": "^2.29.1",
+      "nodemon": "^2.0.7",
+      "prettier": "^2.2.1",
+      "ts-node": "^9.1.1",
+      "typescript": "^4.2.3"
+    },
+    "scripts": {
+      "start": "nodemon server/src/index.ts",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "@types/bcrypt": "^3.0.0",
+      "bcrypt": "^5.0.1",
+      "cors": "^2.8.5",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "jwt": "^0.2.0",
+      "mongoose": "^5.11.19",
+      "passport": "^0.4.1",
+      "passport-jwt": "^4.0.0",
+      "passport-local": "^1.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
