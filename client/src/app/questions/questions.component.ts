@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { InputInterface } from "../types/InputInterface";
 import { inputOne, inputTwo } from "./inputOptions";
 import { recommendations } from "./recommendations";
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Component({
     selector: 'questions',
@@ -11,21 +12,25 @@ import { recommendations } from "./recommendations";
 
 export class QuestionsComponent {
 
-    optionSetOne: InputInterface[] = inputOne // first set of options
+    private url = "http://localhost:3000/"
 
-    optionSetTwo: InputInterface[] = inputTwo // second set of options
+    public optionSetOne: InputInterface[] = inputOne // first set of options
 
-    recommendations: InputInterface[] = recommendations // list of recommendations
+    public optionSetTwo: InputInterface[] = inputTwo // second set of options
 
-    questionOne: string = 'What kind of pizza are you in the mood for?' // first question
+    public recommendations: InputInterface[] = recommendations // list of recommendations
 
-    questionTwo: string = 'What kind of toppings would you want your pizza to have?' //second question
+    public questionOne: string = 'What kind of pizza are you in the mood for?' // first question
 
-    inputOneValue: number = 0 // value of first input
+    public questionTwo: string = 'What kind of toppings would you want your pizza to have?' //second question
 
-    inputTwoValue: number = 0 // value of second input
+    public inputOneValue: number = 0 // value of first input
 
-    questionNumber: number = 1 // the question number
+    public inputTwoValue: number = 0 // value of second input
+
+    public questionNumber: number = 1 // the question number
+
+    constructor(private http:HttpClient) {}
 
     // Set input one value
     public setInputOne = (value: number): void => {
@@ -35,7 +40,7 @@ export class QuestionsComponent {
 
     // Set input two value
     public setInputTwo = (value: number): void => {
-        this.inputTwoValue= value
+        this.inputTwoValue = value
         this.questionNumber = -1
     }
 

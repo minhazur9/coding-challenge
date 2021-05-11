@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 class DB {
 	private mongoose: any
 	public Recommendation: any
@@ -22,11 +21,8 @@ class DB {
 		this.mongoose.connection.on('error', (err: any) => {
 			console.log(`Mongoose connected error ${err}`)
 		})
-		
-
 	}
 }
-
 
 export default DB
 
