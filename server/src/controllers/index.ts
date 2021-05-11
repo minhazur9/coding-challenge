@@ -1,16 +1,11 @@
-class Controller {
-    private express = require('express');
-    private db = require('../models')
-    private router = this.express.Router()
+import DB from '../models';
 
-    public getRecommendation = (): void => {
-        const db = this.db
-        this.router.get('/', (req: Request, res: Response) => {
-            return db.Recommendation.find({}).json()
-        })
+class Controller {
+    private db = new DB();
+
+    public getRecommendation = (): any => {
+        return this.db.Recommendation.find({})
     }
 }
 
-const controller = new Controller()
-
-module.exports = controller
+export default Controller;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const RecommendationSchema = new mongoose.Schema({
     inputOne: {
@@ -15,6 +15,5 @@ const RecommendationSchema = new mongoose.Schema({
     }
 })
 
-const Recommendation = mongoose.model('Recommendation', RecommendationSchema)
+module.exports = mongoose.model('Recommendation', RecommendationSchema)
 
-module.exports = Recommendation

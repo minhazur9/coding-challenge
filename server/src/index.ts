@@ -1,10 +1,13 @@
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import Controller from "./controllers"
+import { UserRecommendationInterface } from "./types/UserRecommendationInterface";
 
 class CodingChallenge {
   private port = process.env.PORT;
   public app: express.Application;
+  private ctrl = new Controller();
   constructor() {
     this.app = express();
     this.config();
@@ -17,7 +20,7 @@ class CodingChallenge {
     );
   }
   public routes(): void {
-    this.app.get("/", (req, res) => res.send("juice. Coding Challenge"));
+    this.app.get("/", (req, res) => this.ctrl.getRecommendation().then((result: UserRecommendationInterface) => res.send(result)));
   }
 
   public config() {
