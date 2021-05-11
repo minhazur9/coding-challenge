@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  startButtonClicked: boolean = false
+  started: boolean = false
   public renderQuestionComponent = (): void => {
-    this.startButtonClicked = true
+    this.started = true
   }
 }

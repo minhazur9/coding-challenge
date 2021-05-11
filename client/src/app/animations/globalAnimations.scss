@@ -1,0 +1,12 @@
+@keyframes slideIn {
+    0% {
+        bottom: 150px;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    100% {
+        opacity: 100;
+    }
+}
