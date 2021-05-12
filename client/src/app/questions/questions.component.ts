@@ -87,7 +87,6 @@ export class QuestionsComponent {
     * Get the recommendation based on the user input
     * @param {inputOne} inputOne - the first user input
     * @param {inputTwo} inputTwo - the second user input
-    * @return {string} the recommendation that will be given to the user
     */
     private getRecommendation = (inputOne: InputInterface, inputTwo: InputInterface): void => {
         const inputs: UserInputsInterface = {
@@ -99,8 +98,8 @@ export class QuestionsComponent {
 
     /*
     * Make a post request for a recommendation to the server
-    * @param {UserRecommendation} recommendation - the recommendation given to the user
-    * @return {Oservable} the observable made from the post request
+    * @param {UserInputs} userInputs - the inputs given by the user
+    * @return {Oservable<UserRecommendation>} the observable made from the post request
     */
     private postUserRecommendation = (userInputs: UserInputsInterface): Observable<UserRecommendation> => {
         return this.http.post<UserRecommendation>(this.apiUrl, userInputs, this.httpOptions)
@@ -108,7 +107,7 @@ export class QuestionsComponent {
 
     /*
     * Execute the post request to retrieve and create a new recommendation to the server
-    * @param {UserRecommendation} recommendation - the recommenation given to the user
+    * @param {UserInputInterface} userInputs - the inputs given by the user
     */
     private newUserRecommendation = (userInputs: UserInputsInterface): void => {
         this.postUserRecommendation(userInputs).subscribe(newRecommendation => this.recommendation = newRecommendation.recommendation )

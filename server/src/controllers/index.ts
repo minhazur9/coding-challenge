@@ -18,9 +18,9 @@ class Controller {
     /*
     * Creates and adds a recommendation document to the server
     * @param {UserRecommendation} userRecommendation - the recommendation document to be added
-    * @return {Promise<void | string | UserRecommendation>} a promise to the server for the recommendation to be added or log an error
+    * @return {Promise<void | UserRecommendation>} a promise to the server for the recommendation to be added or log an error
     */
-    public postRecommendation = (userInputs: UserInputsInterface): Promise<string | void | UserRecommendation> => {
+    public postRecommendation = (userInputs: UserInputsInterface): Promise<void | UserRecommendation> => {
         const recommendationValue = userInputs.inputOne.value + userInputs.inputTwo.value
         const foundRecommendation = recommendations.find((recommendation) => recommendation.value === recommendationValue)
         if (foundRecommendation) {
@@ -32,7 +32,7 @@ class Controller {
             return this.db.Recommendation.create(userRecommendation)
                 .then((createdRec: UserRecommendation) => createdRec)
         }
-        return this.db.Recommendation.create({}).then(() => console.log("error"))
+        else return this.db.Recommendation.create({}).then(() => console.log("error"))
     }
 }
 
