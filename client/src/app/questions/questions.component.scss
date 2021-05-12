@@ -36,41 +36,46 @@
   }
 }
 
-.recommendation {
-  font-size: 40px;
-  .first {
-    animation-name: fadeIn;
-    animation-duration: 1.5s;
-    opacity: 0;
-    animation-fill-mode: forwards;
+.recommendation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .recommendation {
+    font-size: 40px;
+    .first {
+      animation-name: fadeIn;
+      animation-duration: 1.5s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    .second {
+      animation-name: fadeIn;
+      animation-duration: 1s;
+      animation-delay: 750ms;
+      opacity: 0;
+      animation-fill-mode: forwards;
+      color: #fb8404;
+    }
   }
-  .second {
+
+  .try-again {
+    position: relative;
+    width: 250px;
+    background-color: #f54a33;
+    height: 70px;
+    font-size: 40px;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    margin-top: 50px;
     animation-name: fadeIn;
     animation-duration: 1s;
     animation-delay: 750ms;
-    opacity: 0;
     animation-fill-mode: forwards;
-    color: #fb8404;
-  }
-}
-
-.try-again {
-  position: relative;
-  width: 250px;
-  background-color: #f54a33;
-  height: 70px;
-  font-size: 40px;
-  color: white;
-  border: 0;
-  border-radius: 10px;
-  margin-top: 50px;
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-delay: 750ms;
-  animation-fill-mode: forwards;
-  opacity: 0;
-  transition-duration: 300ms;
-  &:hover {
-    transform: scale(1.2);
+    opacity: 0;
+    transition-duration: 300ms;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }

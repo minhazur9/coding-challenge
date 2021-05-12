@@ -1,4 +1,4 @@
-import { InputInterface } from "../types/InputInterface";
+import { InputInterface } from "../../types/InputInterface";
 
 export const recommendations: InputInterface[] = [
     {

@@ -1,4 +1,4 @@
-import { InputInterface } from "../types/InputInterface";
+import { InputInterface } from "../../types/InputInterface";
 
 export const optionSetOne: InputInterface[] = [
     {
@@ -46,5 +46,4 @@ export const optionSetTwo: InputInterface[] = [
         value: 4
     },
     
-
-] // second set of options
+]  // second set of options

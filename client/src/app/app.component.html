@@ -2,8 +2,8 @@
 
 <body>
   <h1 class="title">Order the Perfect Pizza</h1>
-  <button class="start-button"  *ngIf="started === false" (click)="renderQuestionComponent()">Start</button>
-  <questions class="questions" *ngIf="started"></questions>
+  <button class="start-button"  *ngIf="questionNumber === 0" (click)="startQuestionairre()">Start</button>
+  <questions class="questions" *ngIf="questionNumber === 1" [questionNumber]="questionNumber" ></questions>
 </body>
 
 </html>

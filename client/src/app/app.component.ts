@@ -6,9 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  started: boolean = false
-  public renderQuestionComponent = (): void => {
-    this.started = true
+  public questionNumber: number = 0 // the question number
+
+  /*
+  * Starts the questionairre
+  */
+  public startQuestionairre = (): void => {
+    this.questionNumber++
   }
 }

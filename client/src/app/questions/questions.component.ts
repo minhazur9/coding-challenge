@@ -1,9 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { InputInterface } from "../types/InputInterface";
-import { optionSetOne, optionSetTwo } from "./inputOptions";
-import { recommendations } from "./recommendations";
+import { optionSetOne, optionSetTwo } from "./listData/inputOptions";
+import { recommendations } from "./listData/recommendations";
 import { Observable } from "rxjs";
-import { shareReplay, publishReplay } from 'rxjs/operators'
 import { UserRecommendation } from "../types/UserRecommendationInterface";
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
@@ -15,23 +14,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 export class QuestionsComponent {
 
+    @Input() questionNumber: number = 0 // the question number brought over from app component
+
     private apiUrl: string = "http://localhost:3000/api" // the api url
 
-    public recommendation: string = "" // the recommendation to be showed in the frontend
+    private inputOne: InputInterface = { name: "Normal", value: 0 } // value of first input
+
+    private inputTwo: InputInterface = { name: "Nothing", value: 0 } // value of second input
+
+    private questionOne: string = 'What kind of pizza are you in the mood for?' // first question
+
+    private questionTwo: string = 'What kind of toppings would you want your pizza to have?' //second question
+
+    private recommendation: string = "Plain" // the recommendation to be showed in the frontend
 
     public optionSetOne: InputInterface[] = optionSetOne // first set of options
 
     public optionSetTwo: InputInterface[] = optionSetTwo // second set of options
 
-    public questionOne: string = 'What kind of pizza are you in the mood for?' // first question
-
-    public questionTwo: string = 'What kind of toppings would you want your pizza to have?' //second question
-
-    public inputOne: InputInterface = { name: "", value: 0 } // value of first input
-
-    public inputTwo: InputInterface = { name: "", value: 0 } // value of second input
-
-    public questionNumber: number = 1 // the question number
 
     private httpOptions = {
         headers: new HttpHeaders({
@@ -41,22 +41,41 @@ export class QuestionsComponent {
 
     constructor(private http: HttpClient) { }
 
-    // Set input one value
-    public setInputOne = (input: InputInterface): void => {
-        this.inputOne = input
-        this.questionNumber = 2
+    /*
+    * Present the question to the user
+    * @param {number} questionNumber - the number of the question
+    * @return {string} the question that will be shown
+    */
+    public askQuestion = (questionNumber: number): string => {
+        if (questionNumber === 1) return this.questionOne
+        else if (questionNumber === 2) return this.questionTwo
+        else return ""
     }
 
-    // Set input two value
-    private setInputTwo = (input: InputInterface): void => {
-        this.inputTwo = input
-        this.questionNumber = -1
+    /*
+    * Present the recommendation to the user
+    & @return {string} the recommendation that will be shown
+    */
+    public showRecommendation = (): string => {
+        return this.recommendation
     }
 
-    // Wrapper to set input and get recommendation at once
-    public finishQuestionairre  = (input: InputInterface): void => {
-        this.setInputTwo(input)
-        this.getRecommendation()
+    /* Set input one value
+    *  @param {InputInterface} input - the input made by the user
+    */
+    public setInput = (input: InputInterface, questionNumber: number): void => {
+        if (questionNumber === 1) this.inputOne = input
+        else this.inputTwo = input
+        this.questionNumber++
+    }
+
+    /*
+    * Wrapper to set input and get recommendation at once for the click event
+    * @param {InputInterface} input - the input that the user submitted
+    */
+    public finishQuestionairre = (input: InputInterface): void => {
+        this.setInput(input, this.questionNumber)
+        this.getRecommendation(this.inputOne, this.inputTwo)
     }
 
     // Restarts back to question one
@@ -64,30 +83,41 @@ export class QuestionsComponent {
         this.questionNumber = 1
     }
 
-    // Get the recommendation based on the user input and post to the server
-    private getRecommendation = (): string => {
-        const recommendationValue = this.inputOne.value + this.inputTwo.value
+    /*
+    * Get the recommendation based on the user input
+    * @param {inputOne} inputOne - the first user input
+    * @param {inputTwo} inputTwo - the second user input
+    * @return {string} the recommendation that will be given to the user
+    */
+    private getRecommendation = (inputOne: InputInterface, inputTwo: InputInterface): void => {
+        const recommendationValue = inputOne.value + inputTwo.value
         const foundRecommendation = recommendations.find((recommendation) => recommendation.value === recommendationValue)
         if (foundRecommendation) {
-            const userRecommendation = {
-                inputOne: this.inputOne.name,
-                inputTwo: this.inputTwo.name,
+            const newRecommendation = {
+                inputOne: inputOne.name,
+                inputTwo: inputTwo.name,
                 recommendation: foundRecommendation.name
             }
-            this.recommendation = userRecommendation.recommendation
-            this.newUserRecommendation(userRecommendation)
-            return foundRecommendation.name
+            this.recommendation = newRecommendation.recommendation
+            this.newUserRecommendation(newRecommendation)
         }
-        else return 'to try again'
+        else this.recommendation = 'to try again'
     }
 
-    // Make a post request for a recommendation to the server
-    private postUserRecommendation = (userRecommendation: UserRecommendation): Observable<UserRecommendation> => {
-        return this.http.post<UserRecommendation>(this.apiUrl, userRecommendation, this.httpOptions)
+    /*
+    * Make a post request for a recommendation to the server
+    * @param {UserRecommendation} recommendation - the recommendation given to the user
+    * @return {Oservable} the observable made from the post request
+    */
+    private postUserRecommendation = (recommendation: UserRecommendation): Observable<UserRecommendation> => {
+        return this.http.post<UserRecommendation>(this.apiUrl, recommendation, this.httpOptions)
     }
 
-    // Post the recommendation to the server
-    private newUserRecommendation = (userRecommendation: UserRecommendation) => {
-        this.postUserRecommendation(userRecommendation).subscribe()
+    /*
+    * Execute the post request to create a new recommendation to the server
+    * @param {UserRecommendation} recommendation - the recommenation given to the user
+    */
+    private newUserRecommendation = (recommendation: UserRecommendation): void => {
+        this.postUserRecommendation(recommendation).subscribe()
     }
 }
