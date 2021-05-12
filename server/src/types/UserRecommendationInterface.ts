@@ -1,4 +1,5 @@
-export interface UserRecommendation {
+import { Document } from 'mongoose'
+export interface UserRecommendation extends Document {
     inputOne: string,
     inputTwo: string,
     recommendation: string

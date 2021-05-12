@@ -20,8 +20,8 @@ class CodingChallenge {
     );
   }
   public routes(): void {
-    this.app.get("/api", (req, res) => this.ctrl.getRecommendation().then((result: UserRecommendation) => res.send(result)));
-    this.app.post("/api", (req, res) => this.ctrl.postRecommendation(req.body).then((newRec: UserRecommendation) => console.log(`created ${newRec}`)))
+    this.app.get("/api", (req, res) => this.ctrl.getRecommendation().then((result: UserRecommendation[]) => res.send(result)));
+    this.app.post("/api", (req, res) => this.ctrl.postRecommendation(req.body))
   }
 
   public config() {

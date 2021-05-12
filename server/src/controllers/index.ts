@@ -1,16 +1,15 @@
-import express from 'express';
+import { Query } from 'mongoose';
 import DB from '../models';
 import { UserRecommendation } from '../types/UserRecommendationInterface';
 
 class Controller {
-    public router = express.Router()
     private db = new DB();
 
-    public getRecommendation = (): Promise<UserRecommendation> => {
+    public getRecommendation = (): Query<UserRecommendation[], UserRecommendation, {}> => {
         return this.db.Recommendation.find({})
     }
 
-    public postRecommendation = (userRecommendation: UserRecommendation): Promise<UserRecommendation> => {
+    public postRecommendation = (userRecommendation: UserRecommendation): Promise<void> => {
         return this.db.Recommendation.create(userRecommendation)
             .then((createdRec: UserRecommendation) => console.log(`created ${createdRec}`))
 

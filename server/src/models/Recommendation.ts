@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { UserRecommendation } from '../types/UserRecommendationInterface';
 
-const RecommendationSchema = new mongoose.Schema<UserRecommendation>({
+const RecommendationSchema: Schema = new Schema({
     inputOne: {
         type: String,
         required: true,
@@ -16,5 +16,7 @@ const RecommendationSchema = new mongoose.Schema<UserRecommendation>({
     }
 })
 
-module.exports = mongoose.model('Recommendation', RecommendationSchema)
+const UserRecommendationModel = model<UserRecommendation>('Recommendation', RecommendationSchema)
+
+export default UserRecommendationModel
 

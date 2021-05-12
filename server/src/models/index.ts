@@ -1,27 +1,26 @@
-import mongoose from 'mongoose'
+import  mongoose from 'mongoose'
+import { UserRecommendation } from '../types/UserRecommendationInterface';
+import UserRecommendationModel from './Recommendation';
 
 class DB {
-	private mongoose: any
-	public Recommendation: any
-	constructor() {
-		this.mongoose = mongoose
-		this.Recommendation = require('./Recommendation')
-		
-		this.mongoose.connect(process.env.MONGODB_URI, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useCreateIndex: true,
-			useFindAndModify: false,
-		});
+	public Recommendation: mongoose.Model<UserRecommendation> = UserRecommendationModel
+	private uri: any = process.env.MONGODB_URI
+		constructor() {
+			mongoose.connect(this.uri, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+				useCreateIndex: true,
+				useFindAndModify: false,
+			});
 
-		this.mongoose.connection.on('connected', () => {
-			console.log('Connected to MongoDB')
-		})
+			mongoose.connection.on('connected', () => {
+				console.log('Connected to MongoDB')
+			})
 
-		this.mongoose.connection.on('error', (err: any) => {
-			console.log(`Mongoose connected error ${err}`)
-		})
-	}
+			mongoose.connection.on('error', (err: any) => {
+				console.log(`Mongoose connected error ${err}`)
+			})
+		}
 }
 
 export default DB
