@@ -1,10 +1,10 @@
 import { Component, Input } from "@angular/core";
 import { InputInterface } from "../types/InputInterface";
 import { optionSetOne, optionSetTwo } from "./listData/inputOptions";
-import { recommendations } from "./listData/recommendations";
 import { Observable } from "rxjs";
 import { UserRecommendation } from "../types/UserRecommendationInterface";
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { UserInputsInterface } from "../types/UserInputsInterface";
 
 @Component({
     selector: 'questions',
@@ -90,18 +90,11 @@ export class QuestionsComponent {
     * @return {string} the recommendation that will be given to the user
     */
     private getRecommendation = (inputOne: InputInterface, inputTwo: InputInterface): void => {
-        const recommendationValue = inputOne.value + inputTwo.value
-        const foundRecommendation = recommendations.find((recommendation) => recommendation.value === recommendationValue)
-        if (foundRecommendation) {
-            const newRecommendation = {
-                inputOne: inputOne.name,
-                inputTwo: inputTwo.name,
-                recommendation: foundRecommendation.name
-            }
-            this.recommendation = newRecommendation.recommendation
-            this.newUserRecommendation(newRecommendation)
+        const inputs: UserInputsInterface = {
+            inputOne,
+            inputTwo,
         }
-        else this.recommendation = 'to try again'
+        this.newUserRecommendation(inputs)
     }
 
     /*
@@ -109,15 +102,15 @@ export class QuestionsComponent {
     * @param {UserRecommendation} recommendation - the recommendation given to the user
     * @return {Oservable} the observable made from the post request
     */
-    private postUserRecommendation = (recommendation: UserRecommendation): Observable<UserRecommendation> => {
-        return this.http.post<UserRecommendation>(this.apiUrl, recommendation, this.httpOptions)
+    private postUserRecommendation = (userInputs: UserInputsInterface): Observable<UserRecommendation> => {
+        return this.http.post<UserRecommendation>(this.apiUrl, userInputs, this.httpOptions)
     }
 
     /*
-    * Execute the post request to create a new recommendation to the server
+    * Execute the post request to retrieve and create a new recommendation to the server
     * @param {UserRecommendation} recommendation - the recommenation given to the user
     */
-    private newUserRecommendation = (recommendation: UserRecommendation): void => {
-        this.postUserRecommendation(recommendation).subscribe()
+    private newUserRecommendation = (userInputs: UserInputsInterface): void => {
+        this.postUserRecommendation(userInputs).subscribe(newRecommendation => this.recommendation = newRecommendation.recommendation )
     }
 }
