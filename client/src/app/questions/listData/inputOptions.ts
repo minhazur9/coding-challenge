@@ -26,7 +26,7 @@ export const optionSetOne: InputInterface[] = [
 
 export const optionSetTwo: InputInterface[] = [
     {
-        name: 'Nothing',
+        name: 'Cheese',
         value: 0
     },
     {
@@ -34,15 +34,15 @@ export const optionSetTwo: InputInterface[] = [
         value: 1
     },
     {
-        name: 'Peppers',
+        name: 'Multi',
         value: 2
     },
     {
-        name: 'Fruit',
+        name: 'Vegetables',
         value: 3
     },
     {
-        name: 'Vegetables',
+        name: 'Unique',
         value: 4
     },
     

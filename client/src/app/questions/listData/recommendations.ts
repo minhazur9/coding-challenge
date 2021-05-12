@@ -6,44 +6,36 @@ export const recommendations: InputInterface[] = [
         value: 0
     },
     {
-        name: 'Sicillian',
+        name: 'Meat Lovers',
         value: 1
     },
     {
-        name: 'French Bread',
+        name: 'Chicago Deep-Dish',
         value: 2
     },
     {
-        name: 'Neapolitan',
+        name: 'Margherita',
         value: 3
     },
     {
-        name: 'New York Style',
+        name: 'Neapolitan',
         value: 4
     },
     {
-        name: 'Stuffed Crust',
+        name: 'Capricciosa',
         value: 5
     },
     {
-        name: 'Califronia',
+        name: 'Pinapple',
         value: 6
     },
     {
-        name: 'Tomato Pie',
+        name: 'Roman Style',
         value: 7
     },
     {
-        name: 'Buffalo Chicken',
+        name: 'Pugliese',
         value: 8
-    },
-    {
-        name: 'Chicken',
-        value: 9
-    },
-    {
-        name: 'Pinapple',
-        value: 10
     },
 
 ] // list of recommendations
