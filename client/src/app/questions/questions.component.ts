@@ -3,6 +3,7 @@ import { InputInterface } from "../types/InputInterface";
 import { optionSetOne, optionSetTwo } from "./inputOptions";
 import { recommendations } from "./recommendations";
 import { Observable } from "rxjs";
+import { shareReplay, publishReplay } from 'rxjs/operators'
 import { UserRecommendation } from "../types/UserRecommendationInterface";
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
@@ -14,7 +15,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 export class QuestionsComponent {
 
-    private apiUrl: string = "http://localhost:3000/api"
+    private apiUrl: string = "http://localhost:3000/api" // the api url
+
+    public recommendation: string = "" // the recommendation to be showed in the frontend
 
     public optionSetOne: InputInterface[] = optionSetOne // first set of options
 
@@ -34,7 +37,7 @@ export class QuestionsComponent {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
         })
-    };
+    }; // header options 
 
     constructor(private http: HttpClient) { }
 
@@ -45,17 +48,24 @@ export class QuestionsComponent {
     }
 
     // Set input two value
-    public setInputTwo = (input: InputInterface): void => {
+    private setInputTwo = (input: InputInterface): void => {
         this.inputTwo = input
         this.questionNumber = -1
     }
 
+    // Wrapper to set input and get recommendation at once
+    public finishQuestionairre  = (input: InputInterface): void => {
+        this.setInputTwo(input)
+        this.getRecommendation()
+    }
+
+    // Restarts back to question one
     public resetQuestions = (): void => {
         this.questionNumber = 1
     }
 
     // Get the recommendation based on the user input and post to the server
-    public getRecommendation = (): string => {
+    private getRecommendation = (): string => {
         const recommendationValue = this.inputOne.value + this.inputTwo.value
         const foundRecommendation = recommendations.find((recommendation) => recommendation.value === recommendationValue)
         if (foundRecommendation) {
@@ -64,14 +74,20 @@ export class QuestionsComponent {
                 inputTwo: this.inputTwo.name,
                 recommendation: foundRecommendation.name
             }
-            this.postUserRecommendation(userRecommendation).subscribe()
+            this.recommendation = userRecommendation.recommendation
+            this.newUserRecommendation(userRecommendation)
             return foundRecommendation.name
         }
         else return 'to try again'
     }
 
-    // Post recommendation to server
+    // Make a post request for a recommendation to the server
     private postUserRecommendation = (userRecommendation: UserRecommendation): Observable<UserRecommendation> => {
         return this.http.post<UserRecommendation>(this.apiUrl, userRecommendation, this.httpOptions)
+    }
+
+    // Post the recommendation to the server
+    private newUserRecommendation = (userRecommendation: UserRecommendation) => {
+        this.postUserRecommendation(userRecommendation).subscribe()
     }
 }

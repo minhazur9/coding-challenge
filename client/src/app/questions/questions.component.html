@@ -12,14 +12,14 @@
 <div class="question-container" *ngIf="questionNumber === 2">
     <h2 class="question">{{ questionTwo }}</h2>
     <div class="inputs-container" *ngIf="questionNumber === 2">
-        <button class="option" *ngFor="let option of optionSetTwo" (click)="setInputTwo(option)">
+        <button class="option" *ngFor="let option of optionSetTwo" (click)="finishQuestionairre(option)">
             {{option.name}}
         </button>
     </div>
 </div>
 
 <!-- Recommendation -->
-<h2 class="recommendation" *ngIf="questionNumber === -1"><span class="first">I recommend </span><span class="second">{{getRecommendation()}}</span></h2>
+<h2 class="recommendation" *ngIf="questionNumber === -1"><span class="first">I recommend </span><span class="second">{{recommendation}}</span></h2>
 
 <!-- Try again button -->
  <button class="try-again" *ngIf="questionNumber === -1" (click)="resetQuestions()">Try again</button>
