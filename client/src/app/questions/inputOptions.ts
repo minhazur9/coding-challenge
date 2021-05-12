@@ -1,6 +1,6 @@
 import { InputInterface } from "../types/InputInterface";
 
-export const inputOne: InputInterface[] = [
+export const optionSetOne: InputInterface[] = [
     {
         name: 'Normal',
         value: 0
@@ -24,7 +24,7 @@ export const inputOne: InputInterface[] = [
 
 ]  // first set of options
 
-export const inputTwo: InputInterface[] = [
+export const optionSetTwo: InputInterface[] = [
     {
         name: 'Nothing',
         value: 0
